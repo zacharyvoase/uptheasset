@@ -1,5 +1,8 @@
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), 'lib')))
 
+require 'bundler'
+Bundler.setup
+
 # ---- Gem ----
 
 # Standard gem release process:
