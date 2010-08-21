@@ -10,6 +10,7 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.summary            = "summary"
   gem.description        = "description"
   gem.homepage           = "http://github.com/zacharyvoase/name"
+  gem.rubyforge_project  = "nowarning"
   gem.license            = "Public Domain" if gem.respond_to?(:license=)
 
   gem.authors            = ["Zachary Voase"]
