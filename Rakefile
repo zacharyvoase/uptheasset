@@ -1,6 +1,7 @@
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__), 'lib')))
 
 require 'bundler'
+require 'shellwords'
 Bundler.setup
 
 # ---- Gem ----
@@ -76,4 +77,19 @@ namespace :bump do
     ver[2] = 0
     write_current_version(ver)
   end
+end
+
+# ---- RSpec ----
+
+require 'spec/rake/spectask'
+require 'spec/version'
+
+task :default => :spec
+Spec::Rake::SpecTask.new do |t|
+  t.libs = [File.expand_path(File.join(File.dirname(__FILE__), 'lib'))]
+  t.pattern = "spec/**/*_spec.rb"
+  t.spec_opts = (ENV["SPEC_OPTS"] || %{
+    --color
+    --format nested
+  }).shellsplit
 end
