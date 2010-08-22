@@ -93,3 +93,21 @@ Spec::Rake::SpecTask.new do |t|
     --format nested
   }).shellsplit
 end
+
+# ---- YARD ----
+
+require 'yard'
+
+task :doc => :yard
+YARD::Rake::YardocTask.new do |yard|
+  yard.files = ['lib/**/*.rb', '-', 'AUTHORS', 'UNLICENSE', 'VERSION']
+  yard.options = (ENV["YARD_OPTS"] || %{
+    --title "#{GEMSPEC.name} v#{GEMSPEC.version}"
+    --output-dir doc/yard
+    --protected
+    --no-private
+    --hide-void-return
+    --markup markdown
+    --readme README.md
+  }).shellsplit
+end
