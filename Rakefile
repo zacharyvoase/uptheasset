@@ -90,6 +90,8 @@ spec = RSpec::Core::RakeTask.new do |t|
   t.rspec_opts = (ENV["RSPEC_OPTS"] || %{
     --color
     --format nested
+    -I #{File.expand_path(File.join(__FILE__, "..", "lib"))}
+    -r #{File.expand_path(File.join(__FILE__, "..", "spec", "spec_helper.rb"))}
   }).shellsplit
 end
 
