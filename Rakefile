@@ -81,14 +81,13 @@ end
 
 # ---- RSpec ----
 
-require 'spec/rake/spectask'
-require 'spec/version'
+require 'rspec/core/rake_task'
 
 task :default => :spec
-Spec::Rake::SpecTask.new do |t|
-  t.libs = [File.expand_path(File.join(File.dirname(__FILE__), 'lib'))]
+spec = RSpec::Core::RakeTask.new do |t|
+  t.verbose = false
   t.pattern = "spec/**/*_spec.rb"
-  t.spec_opts = (ENV["SPEC_OPTS"] || %{
+  t.rspec_opts = (ENV["RSPEC_OPTS"] || %{
     --color
     --format nested
   }).shellsplit
