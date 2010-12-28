@@ -7,10 +7,10 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.version            = File.read("VERSION").chomp
   gem.date               = File.mtime("VERSION").strftime("%Y-%m-%d")
 
-  gem.name               = "name"
-  gem.summary            = "summary"
-  gem.description        = "description"
-  gem.homepage           = "http://github.com/zacharyvoase/name"
+  gem.name               = "uptheasset"
+  gem.summary            = "RDF-enhanced bookkeeping and accounting."
+  gem.description        = "A suite of bookkeeping and accounting utilities, using RDF."
+  gem.homepage           = "http://github.com/zacharyvoase/uptheasset"
   gem.rubyforge_project  = "nowarning"
   gem.license            = "Public Domain" if gem.respond_to?(:license=)
 
@@ -29,7 +29,8 @@ GEMSPEC = Gem::Specification.new do |gem|
 
   gem.required_ruby_version      = ">= 1.8.6"
 
-  # Add dependencies here.
+  gem.add_dependency             "rdf",   "~> 0.3.0"
+  gem.add_dependency             "spira", "~> 0.0.11"
 
   gem.add_development_dependency "rake",  "~> 0.8.7"
   gem.add_development_dependency "rspec", ">= 1.3.0"
