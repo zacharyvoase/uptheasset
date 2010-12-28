@@ -1,7 +1,7 @@
-source :rubygems
+source "http://rubygems.org"
 
-# Gem dependencies go here.
-# See: http://gembundler.com/
+# Specify your gem's dependencies in gem_name.gemspec
+gemspec
 
 group :development do
   gem "rake",  "~> 0.8.7"
