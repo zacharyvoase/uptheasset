@@ -8,7 +8,9 @@ accounting, powered by standard UNIX and [RDF.rb](http://rdf.rubyforge.org).
 It is also a work-in-progress Web Ontology for accounting and bookkeeping.
 
 
-## Example
+## Examples
+
+### Record a transaction
 
     @base <this:transactions> .
     @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -20,12 +22,10 @@ It is also a work-in-progress Web Ontology for accounting and bookkeeping.
     <this:transactions#1a183830-f465-012d-dcb8-001ff3d30363> a uta:Transaction ;
         dc:date "2010-12-28Z"^^xsd:date ;
         dc:identifier <urn:uuid:1a183830-f465-012d-dcb8-001ff3d30363> ;
-        uta:entry [
-            uta:entryType uta:credit ;
-            uta:account <this:accounts#revenue/service> ;
-            uta:amount 30
-        ], [
-            uta:entryType uta:debit ;
-            uta:account <this:accounts#assets/current/cash> ;
-            uta:amount 30
-        ] .
+        uta:entry
+            [ a uta:Credit ;
+              uta:account <this:accounts#revenue/service> ;
+              uta:amount 30 ],
+            [ a uta:Debit ;
+              uta:account <this:accounts#assets/current/cash> ;
+              uta:amount 30 ] .
