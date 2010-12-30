@@ -1,0 +1,109 @@
+@base         <http://uptheasset.org/ontology> .
+@prefix :     <http://uptheasset.org/ontology#> .
+@prefix dc:   <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel:  <http://www.w3.org/1999/xhtml/vocab#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+<> a owl:Ontology ;
+  rdfs:label       "UpTheAsset" ;
+  rdfs:comment     "An ontology for double-entry bookkeeping and accounting."@en ;
+  rdfs:seeAlso     <http://uptheasset.org/> ;
+  foaf:maker       <http://zacharyvoase.com/> ;
+  dc:creator       "UpTheAsset.org" ;
+  dc:created       "2010-12-30"^^xsd:date ;
+  dc:modified      "2010-12-30"^^xsd:date ;
+  rel:license      <http://creativecommons.org/publicdomain/zero/1.0/> ;
+  owl:versionInfo  "0.0.1" .
+
+#############
+## Classes ##
+#############
+
+:Account a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "Account" ;
+  rdfs:comment     "A specific class of resources or obligations for which debits and credits are recorded."@en .
+
+:Credit a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:subClassOf  :Entry ;
+  rdfs:label       "Credit" ;
+  rdfs:comment     "An increase in the balance of a liability, revenue or equity account, or a decrease in the balance of an asset or expense account."@en ;
+  owl:disjointWith :Debit .
+
+:Debit a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:subClassOf  :Entry ;
+  rdfs:label       "Debit" ;
+  rdfs:comment     "An increase in the balance of an asset or expense account, or a decrease in the balance of a liability, revenue or equity account."@en .
+
+:Entry a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "Entry" ;
+  rdfs:comment     "An atomic part of a transaction which involves the debiting or crediting of a single account by a value."@en .
+
+:Journal a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:subClassOf  rdf:Seq ;
+  rdfs:label       "Journal" ;
+  rdfs:comment     "A chronological record of debits and credits against one or more accounts for an entity."@en .
+
+:Transaction a owl:Class, rdfs:Class ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "Transaction" ;
+  rdfs:comment     "A single event in a journal, composed of at least one debit and at least one credit, involving the movement of value between at least two accounts."@en .
+
+#######################
+## Object Properties ##
+#######################
+
+:account a owl:ObjectProperty, rdfs:Property ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "account" ;
+  rdfs:comment     "The account against which this credit or debit is incurred."@en ;
+  rdfs:domain      :Entry ;
+  rdfs:range       :Account .
+
+:amount a owl:ObjectProperty, rdfs:Property ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "amount" ;
+  rdfs:comment     "The value of a debit or credit."@en ;
+  rdfs:domain      :Entry .
+
+:entry a owl:InverseFunctionalProperty, owl:ObjectProperty, rdfs:Property ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "entry" ;
+  rdfs:comment     "An entry in a transaction."@en ;
+  rdfs:domain      :Transaction ;
+  rdfs:range       :Entry ;
+  owl:inverseOf    :transaction .
+
+:owner a owl:ObjectProperty, rdfs:Property ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "owner" ;
+  rdfs:comment     "The owner of this resource."@en ;
+  owl:inverseOf    :owns .
+
+:owns a owl:ObjectProperty, rdfs:Property ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label      "owns" ;
+  rdfs:comment    "A resource which this entity owns."@en .
+
+:transaction a owl:FunctionalProperty, owl:ObjectProperty ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label       "transaction" ;
+  rdfs:comment     "The transaction which this entry belongs to."@en ;
+  rdfs:domain      :Entry ;
+  rdfs:range       :Transaction .
+
+[] a owl:AllDisjointClasses ;
+  owl:members (
+    :Account
+    :Entry
+    :Journal
+    :Transaction
+  ) .
