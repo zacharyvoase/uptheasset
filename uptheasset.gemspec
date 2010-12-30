@@ -25,7 +25,6 @@ GEMSPEC = Gem::Specification.new do |gem|
   gem.extensions         = []
   gem.test_files         = FileList["{test,spec,features}/**/*"]
   gem.has_rdoc           = false
-  gem.has_yard           = true
 
   gem.required_ruby_version      = ">= 1.8.6"
 
