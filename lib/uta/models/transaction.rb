@@ -15,11 +15,35 @@ module UTA::Models
     base_uri "this:transactions#"
     type RDF::UTA.Transaction
 
+    # The identifier of this transaction.
+    #
+    # When using {Transaction.generate}, this will be set to a `urn:uuid:` URI.
     property :id, :predicate => RDF::DC.identifier
+
+    # The date of this transaction.
+    #
+    # Defaults to `Date.today` when using {Transaction.generate}.
     property :date, :predicate => RDF::DC.date
+
+    # The label for this transaction.
+    #
+    # @example
+    #   tr.label = "Sale of goods"
+    #   tr.label = "Depreciation of car"
+    #   tr.label = "Stationery purchase"
     property :label, :predicate => RDF::RDFS.label
+
+    # Additional information about a transaction.
+    #
+    # @example
+    #   tr.comment = "Sold some nearly-expired stock at a slight discount."
     property :comment, :predicate => RDF::RDFS.comment
 
+    # The individual components of a transaction.
+    #
+    # @example
+    #   tr.entries << Entry.credit(30, Account["cash"])
+    #   tr.entries << Entry.debit(30, Account["expenses"])
     has_many :entries, :predicate => RDF::UTA.entry, :type => :Entry
 
     # Generate and save a new transaction (with its own UUID).
@@ -35,7 +59,7 @@ module UTA::Models
     #   Transaction.generate do |t|
     #     t.credit 30, RDF::URI.new("accounts#revenue")
     #     t.debit  30, RDF::URI.new("accounts#cash")
-    #   end
+    #   end # => <this:transactions#08a155e0-f657-012d-dccf-001ff3d30363>
     def self.generate(attributes = {})
       uuid = ::UUID.new.generate
       transaction = self.for(uuid)

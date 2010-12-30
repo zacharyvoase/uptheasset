@@ -9,8 +9,20 @@ module UTA::Models
   class Entry
     include Spira::Resource
 
+    # The type of this entry.
+    #
+    # Should be set to either `RDF::UTA.Credit` or `RDF::UTA.Debit`.
     property :type, :predicate => RDF.type
+
+    # The amount debited/credited with this entry.
+    #
+    # This is deliberately left open-ended so you can specify integers, custom
+    # currency objects, etc.
     property :amount, :predicate => RDF::UTA.amount
+
+    # The account to debit/credit.
+    #
+    # This should be an `RDF::URI` or an {Account}.
     property :account, :predicate => RDF::UTA.account, :type => :Account
 
     # Create and save a credit against a given account.

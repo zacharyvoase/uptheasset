@@ -24,8 +24,13 @@ module UTA::Models
     base_uri "this:accounts#"
     type RDF::UTA.Account
 
+    # The name of this account.
     property :label, :predicate => RDF::RDFS.label
+
+    # Additional information about this account.
     property :comment, :predicate => RDF::RDFS.comment
+
+    # The owner of this account.
     property :owner, :predicate => RDF::UTA.owner
   end
 end
