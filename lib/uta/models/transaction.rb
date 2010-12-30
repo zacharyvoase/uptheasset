@@ -51,7 +51,7 @@ module UTA::Models
     #   The account to credit.
     # @return [Entry] the created entry.
     def credit(amount, account)
-      self.entries << Entry.credit(amount, account).save!
+      self.entries << Entry.credit(amount, account)
     end
 
     # Add a (saved) debit {Entry} to this transaction.
@@ -62,7 +62,7 @@ module UTA::Models
     #   The account to debit.
     # @return [Entry] the created entry.
     def debit(amount, account)
-      self.entries << Entry.debit(amount, account).save!
+      self.entries << Entry.debit(amount, account)
     end
   end
 end
