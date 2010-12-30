@@ -3,5 +3,7 @@
 .tmp
 .yardoc
 /doc/yard
+/doc/ontology.*
+!/doc/ontology.ttl
 pkg
 tmp
