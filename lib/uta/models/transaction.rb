@@ -6,6 +6,9 @@ module UTA::Models
   # A transaction is the record of an exchange between two or more accounts in
   # a journal. Every transaction should have at least two entries (one credit,
   # one debit).
+  #
+  # @see http://uptheasset.org/ontology#Transaction
+  #   Ontology docs for Transaction
   class Transaction
     include Spira::Resource
 
@@ -24,7 +27,7 @@ module UTA::Models
     # @param [Hash] attributes
     #   An optional hash of attributes to set on the generated transaction.
     #
-    # @yield [Transaction] The generated transaction (not yet saved).
+    # @yield [transaction] The generated transaction (not yet saved).
     #
     # @return [Transaction] The saved transaction.
     #

@@ -15,6 +15,9 @@ module UTA::Models
   #   transaction.credit 30, Account["assets/current/cash"]
   #   transaction.debit  30, Account["revenue/services"]
   #   transaction.credit 30, Account["expenses/stationery"]
+  #
+  # @see http://uptheasset.org/ontology#Account
+  #   Ontology docs for Account
   class Account
     include Spira::Resource
 

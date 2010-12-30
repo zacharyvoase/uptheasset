@@ -3,6 +3,9 @@ module UTA::Models
   #
   # An entry is a single credit or debit against an {Account}, which makes up
   # part of a transaction.
+  #
+  # @see http://uptheasset.org/ontology#Entry
+  #   Ontology docs for Entry
   class Entry
     include Spira::Resource
 
