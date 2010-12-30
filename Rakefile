@@ -6,6 +6,22 @@ require 'shellwords'
 # Adds `build`, `install` and `release` tasks.
 Bundler::GemHelper.install_tasks
 
+# ---- Ontology ----
+#
+# Helpers for building out various versions of the ontology.
+
+ONTOLOGY_FORMATS = [
+  ["ntriples", ".nt"],
+  ["rdfxml-abbrev", ".rdf"],
+]
+
+desc "Build other formats of the ontology from the Turtle source"
+task :onto do
+  ONTOLOGY_FORMATS.each do |format, fileext|
+    sh "rapper -i turtle -o #{format} doc/ontology.ttl > doc/ontology#{fileext}"
+  end
+end
+
 # ---- Versioning ----
 
 # Tasks for bumping the value in VERSION:
