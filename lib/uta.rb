@@ -13,4 +13,5 @@ end
 
 # The root UpTheAsset module.
 module UTA
+  require 'uta/models'
 end
