@@ -30,6 +30,7 @@ GEMSPEC = Gem::Specification.new do |gem|
 
   gem.add_dependency             "rdf",   "~> 0.3.0"
   gem.add_dependency             "spira", "~> 0.0.11"
+  gem.add_dependency             "uuid",  "~> 2.3.1"
 
   gem.add_development_dependency "rake",  "~> 0.8.7"
   gem.add_development_dependency "rspec", ">= 1.3.0"
