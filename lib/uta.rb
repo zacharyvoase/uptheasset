@@ -1,3 +1,4 @@
+require 'date'
 require 'rdf'
 
 module RDF
