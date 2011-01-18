@@ -103,3 +103,10 @@ YARD::Rake::YardocTask.new do |yard|
     --readme README.md
   }).shellsplit
 end
+
+namespace :deploy do
+  desc "Sync the built HTML docs and ontology to uptheasset.org"
+  task :docs => [:onto, :yard] do
+    sh "rsync -avz doc/ontology.* doc/yard/ -e ssh uptheasset.org:"
+  end
+end
