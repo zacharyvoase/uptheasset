@@ -5,6 +5,7 @@ module UTA::Commands
     include UTA::Models
 
     def initialize(args)
+      # TODO: support amount representations other than simple integers.
       @amount = args.shift.to_i
       @credit = Account[args.shift]
       @debit = Account[args.shift]
