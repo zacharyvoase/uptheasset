@@ -1,5 +1,6 @@
 require 'date'
 require 'rdf'
+require 'rdf/n3'
 
 module RDF
   # Vocabulary for the UpTheAsset ontology.
