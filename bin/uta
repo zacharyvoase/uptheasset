@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# Usage: uta [global-options] <command> [options]
+
+# TODO: separate global options from the front of the command.
+command_name = ARGV[0]
+command_args = ARGV[1..-1]
+
+require 'uta'
+require 'uta/models'
+require 'uta/commands'
+require "uta/commands/#{command_name.downcase}"
+
+# The `gsub` will transform command_name => commandname => CommandName.
+UTA::Commands[command_name.gsub(/[_-]/, '')].new(command_args).run
